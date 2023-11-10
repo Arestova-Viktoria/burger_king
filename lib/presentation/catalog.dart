@@ -1,4 +1,5 @@
 import 'package:burger_king/internal/dependencies/product_module.dart';
+import 'package:burger_king/presentation/catalog_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,8 +24,8 @@ class _CatalogState extends State<Catalog> {
 
   @override
   void dispose() {
-    super.dispose();
     _catalogBloc.close();
+    super.dispose();
   }
 
 
@@ -41,7 +42,8 @@ class _CatalogState extends State<Catalog> {
         bloc: _catalogBloc,
         builder: (context,state){
           if (state is ReadyCatalogState){
-            return _getGrid(state.listProducts);
+            //print(state.listProducts);
+            return CatalogGrid(state.listProducts);
           }
           else{
             return const Text("Загрузка");
@@ -51,79 +53,4 @@ class _CatalogState extends State<Catalog> {
       ),
     );
   }
-
-  Widget _getGrid(listProducts){
-    return GridView(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          mainAxisSpacing: 5,
-          childAspectRatio: 1,
-          crossAxisSpacing: 5,
-          mainAxisExtent: 275,
-        ),
-        padding: const EdgeInsets.symmetric(
-          vertical: 10,
-          horizontal: 15,
-        ),
-        children: [
-          ...listProducts.map((product) => _getCard(product))
-        ],
-    );
-  }
-
-  Widget _getCard(product){
-    return Card(
-        color: const Color.fromRGBO(48, 48, 48,1.00),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Flexible(
-              flex: 8,
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(product.image),
-                  ),
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20)
-                  ),
-                ),
-              ),
-            ),
-            Flexible(
-              flex: 3,
-              fit: FlexFit.tight,
-              child: Container(
-                padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
-                child: Text(product.title,
-                  textAlign: TextAlign.start,
-                  maxLines: 2,
-                  style: const TextStyle(
-                    fontSize: 15,
-                  ),
-                ),
-              ),
-            ),
-            Flexible(
-                flex: 2,
-                child: Container(
-                  padding: const EdgeInsets.fromLTRB(10, 3, 10, 0),
-                  child: Text(product.price.toInt().toString() + " ₽",
-                    textAlign: TextAlign.start,
-                    style: const TextStyle(
-                      fontSize: 15,
-                    ),
-                  ),
-                )
-            ),
-          ],
-        )
-    );
-  }
-
 }

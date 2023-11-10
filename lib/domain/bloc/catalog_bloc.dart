@@ -1,17 +1,18 @@
 import 'dart:async';
 import 'package:meta/meta.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:burger_king/data/repository/product_data_repository.dart';
+import 'package:burger_king/domain/repository/product_repository.dart';
+
+import '../model/product.dart';
 
 
 class CatalogBloc extends Bloc<CatalogEvent,CatalogState>{
 
-  ProductDataRepository _productDataRepository;
+  ProductRepository _productDataRepository;
 
   CatalogBloc(
-      CatalogState initialState,
       this._productDataRepository,
-      ) : super(initialState);
+      ) : super(LoadingCatalogState());
 
 
   CatalogState get initialState => LoadingCatalogState();
@@ -26,10 +27,8 @@ class CatalogBloc extends Bloc<CatalogEvent,CatalogState>{
   Future<CatalogState> _mapRefreshToState(RefreshCatalogEvent event) async {
     try {
       final listProducts = await _productDataRepository.getListProduct();
-      //print(listProducts);
       return ReadyCatalogState(listProducts);
     } catch(e) {
-      print(e);
       return ErrorCatalogState(e);
     }
   }
@@ -43,7 +42,7 @@ abstract class CatalogState {}
 class LoadingCatalogState extends CatalogState{}
 
 class ReadyCatalogState extends CatalogState {
-  final listProducts;
+  final List<Product> listProducts;
   ReadyCatalogState(this.listProducts);
 }
 

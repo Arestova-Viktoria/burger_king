@@ -34,7 +34,7 @@ class _CatalogState extends State<Catalog> {
       bloc: _catalogBloc,
       listener: (context,state){
         if (state is ErrorCatalogState) {
-          const Text("Ошибка");
+          print("Ошибка");
         }
       },
       child: BlocBuilder<CatalogBloc,CatalogState>(

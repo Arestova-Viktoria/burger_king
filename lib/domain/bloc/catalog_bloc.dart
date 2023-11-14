@@ -26,7 +26,7 @@ class CatalogBloc extends Bloc<CatalogEvent,CatalogState>{
 
   Future<CatalogState> _mapRefreshToState(RefreshCatalogEvent event) async {
     try {
-      final listProducts = await _productDataRepository.getListProduct();
+      final listProducts = _productDataRepository.getListProduct();
       return ReadyCatalogState(listProducts);
     } catch(e) {
       return ErrorCatalogState(e);

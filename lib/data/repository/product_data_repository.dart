@@ -1,20 +1,24 @@
 
-
-import 'package:burger_king/data/db/orm/orm_product.dart';
+import 'package:burger_king/data/products_data.dart';
 import 'package:burger_king/domain/model/product.dart';
 import 'package:burger_king/domain/repository/product_repository.dart';
 
 class ProductDataRepository extends ProductRepository{
-  OrmProduct _ormProduct;
+
+  ProductsData _productsData;
 
   ProductDataRepository(
-      this._ormProduct
+      this._productsData
       );
 
   @override
-  Future<List<Product>> getListProduct() async {
+  List<Product> getListProduct(){
 
-    List<Product> products = await _ormProduct.getListProduct();
+    List<Map<String,dynamic>> maps = _productsData.values;
+    //записываем данные из map в объекты product (в перем. products)
+    final products = maps
+        .map((product) => Product.fromMap(product))
+        .toList();
 
     return products;
   }

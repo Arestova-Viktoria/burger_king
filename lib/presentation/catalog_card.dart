@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:burger_king/domain/model/product.dart';
+import '../domain/model/product.dart';
+
+
 
 
 class CatalogCard extends StatelessWidget {

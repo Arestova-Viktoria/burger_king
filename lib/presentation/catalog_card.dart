@@ -55,7 +55,7 @@ class CatalogCard extends StatelessWidget {
                 flex: 2,
                 child: Container(
                   padding: const EdgeInsets.fromLTRB(10, 3, 10, 0),
-                  child: Text(_product.price.toInt().toString() + " ₽",
+                  child: Text("${_product.price.toInt()} ₽",
                     textAlign: TextAlign.start,
                     style: const TextStyle(
                       fontSize: 15,

@@ -8,10 +8,10 @@ import '../model/product.dart';
 
 class CatalogBloc extends Bloc<CatalogEvent,CatalogState>{
 
-  ProductRepository _productDataRepository;
+  final ProductRepository _productRepository;
 
   CatalogBloc(
-      this._productDataRepository,
+      this._productRepository,
       ) : super(LoadingCatalogState());
 
 
@@ -26,7 +26,7 @@ class CatalogBloc extends Bloc<CatalogEvent,CatalogState>{
 
   Future<CatalogState> _mapRefreshToState(RefreshCatalogEvent event) async {
     try {
-      final listProducts = _productDataRepository.getListProduct();
+      final listProducts = _productRepository.getListProduct();
       return ReadyCatalogState(listProducts);
     } catch(e) {
       return ErrorCatalogState(e);

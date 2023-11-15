@@ -1,7 +1,7 @@
 
 
 class ProductsData{
-  final List<Map<String, dynamic>> _values = [
+  final List<Map<String, dynamic>> _listProducts = [
     {
       "product_id": 0,
       "product_title": "Комбо с Воппером Дж.",
@@ -40,7 +40,6 @@ class ProductsData{
     }
   ];
 
-  //Future<List<Map<String,dynamic>>> get(){
-  List<Map<String, dynamic>> get values => _values;
-  //}
+  List<Map<String, dynamic>> get listProducts => _listProducts;
+
 }

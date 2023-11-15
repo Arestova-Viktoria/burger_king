@@ -1,5 +1,4 @@
 import 'package:burger_king/presentation/catalog.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'categories.dart';
@@ -25,12 +24,12 @@ class _CatalogScreenState extends State<CatalogScreen> {
         ),),
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.keyboard_backspace),
+          icon: const Icon(Icons.keyboard_backspace),
           onPressed: () {  },
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.info_outline),
+            icon: const Icon(Icons.info_outline),
             onPressed: () {  },
           ),
         ],
@@ -38,9 +37,9 @@ class _CatalogScreenState extends State<CatalogScreen> {
       body: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(left: 15,top: 5,bottom: 5),
+            padding: const EdgeInsets.only(left: 15,top: 5,bottom: 5),
             height: 52,
-            child: Categories(),
+            child: const Categories(),
           ),
           const Expanded(child: Catalog())
         ],

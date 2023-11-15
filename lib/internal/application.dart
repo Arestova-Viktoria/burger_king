@@ -12,7 +12,7 @@ class Application extends StatelessWidget {
           colorScheme: const ColorScheme.dark(),
           useMaterial3: true,
         ),
-        home: CatalogScreen()
+        home: const CatalogScreen()
     );
   }
 }

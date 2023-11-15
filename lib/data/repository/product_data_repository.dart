@@ -5,7 +5,7 @@ import 'package:burger_king/domain/repository/product_repository.dart';
 
 class ProductDataRepository extends ProductRepository{
 
-  ProductsData _productsData;
+  final ProductsData _productsData;
 
   ProductDataRepository(
       this._productsData
@@ -14,13 +14,14 @@ class ProductDataRepository extends ProductRepository{
   @override
   List<Product> getListProduct(){
 
-    List<Map<String,dynamic>> maps = _productsData.values;
-    //записываем данные из map в объекты product (в перем. products)
+    List<Map<String,dynamic>> maps = _productsData.listProducts;
+    //записываем данные из списка maps в список объектов product (в перем. products)
     final products = maps
         .map((product) => Product.fromMap(product))
         .toList();
 
     return products;
   }
+
 
 }

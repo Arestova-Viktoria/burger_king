@@ -1,20 +1,15 @@
 // данные для 1 продукта, который будет отображаться на экране
 
 class Product {
-  static const ID = "product_id";
-  static const TITLE = "product_title";
-  static const IMAGE = "product_image";
-  static const PRICE = "product_price";
+  static const idMap = "product_id";
+  static const titleMap = "product_title";
+  static const imageMap = "product_image";
+  static const priceMap = "product_price";
 
   final int id;
   final String title;
   final String image;
   final double price;
-
-  // int get id => _id;
-  // String get title => _title;
-  // String get image => _image;
-  // double get price => _price;
 
   Product({
     required this.id,
@@ -23,9 +18,9 @@ class Product {
     required this.price
   });
 
-  Product.fromMap(dynamic map):
-        id = map ["product_id"],
-        title = map ["product_title"],
-        image = map ["product_image"],
-        price = map ["product_price"];
+  Product.fromMap(Map<String, dynamic> map):
+        id = map [idMap],
+        title = map [titleMap],
+        image = map [imageMap],
+        price = map [priceMap];
 }

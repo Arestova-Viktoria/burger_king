@@ -1,7 +1,7 @@
-import 'package:burger_king/presentation/catalog.dart';
+import 'package:burger_king/presentation/catalog/catalog.dart';
 import 'package:flutter/material.dart';
 
-import 'categories.dart';
+import 'categories/categories.dart';
 
 
 class CatalogScreen extends StatefulWidget {

@@ -26,7 +26,7 @@ class CatalogBloc extends Bloc<CatalogEvent,CatalogState>{
 
   Future<CatalogState> _mapRefreshToState(RefreshCatalogEvent event) async {
     try {
-      final listProducts = _productRepository.getListProduct();
+      final listProducts = _productRepository.getListProduct(categoryId: event.categoryIndex);
       return ReadyCatalogState(listProducts);
     } catch(e) {
       return ErrorCatalogState(e);
@@ -49,7 +49,10 @@ class ReadyCatalogState extends CatalogState {
 @immutable
 abstract class CatalogEvent {}
 
-class RefreshCatalogEvent extends CatalogEvent{}
+class RefreshCatalogEvent extends CatalogEvent{
+  final int categoryIndex;
+  RefreshCatalogEvent({required this.categoryIndex});
+}
 
 
 class ErrorCatalogState extends CatalogState {

@@ -1,6 +1,6 @@
 import 'package:burger_king/domain/bloc/categories_bloc.dart';
 import 'package:burger_king/internal/dependencies/category_module.dart';
-import 'package:burger_king/presentation/categories_listview.dart';
+import 'package:burger_king/presentation/categories/categories_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,7 +13,6 @@ class Categories extends StatefulWidget {
 
 class _CategoriesState extends State<Categories> {
   final CategoriesBloc _categoriesBloc = CategoryModule.categoriesBloc();
-  int selectedIndex = 0;
 
   @override
   void initState() {
@@ -27,7 +26,6 @@ class _CategoriesState extends State<Categories> {
     super.dispose();
   }
 
-  //List categoriesList = ["Популярные блюда","Комбо","Креветки","Гриль","Бургеры"];
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +40,7 @@ class _CategoriesState extends State<Categories> {
         bloc: _categoriesBloc,
         builder: (context,state){
           if (state is ReadyCategoriesState) {
-            return CategoriesListView(state.listCategories, selectedIndex);
+            return CategoriesListView(state.listCategories);
           }
           else{
             return const Text("Загрузка");
@@ -50,7 +48,6 @@ class _CategoriesState extends State<Categories> {
         },
       ),
     );
-      //_getListView(categoriesList, selectedIndex);
   }
 
 }

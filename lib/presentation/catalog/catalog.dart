@@ -1,9 +1,9 @@
 import 'package:burger_king/internal/dependencies/product_module.dart';
-import 'package:burger_king/presentation/catalog_grid.dart';
+import 'package:burger_king/presentation/catalog/catalog_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../domain/bloc/catalog_bloc.dart';
+import '../../domain/bloc/catalog_bloc.dart';
 
 
 class Catalog extends StatefulWidget {
@@ -19,7 +19,7 @@ class _CatalogState extends State<Catalog> {
   @override
   void initState() {
     super.initState();
-    _catalogBloc.add(RefreshCatalogEvent());
+    _catalogBloc.add(RefreshCatalogEvent(categoryIndex: 0));
   }
 
   @override
@@ -42,7 +42,6 @@ class _CatalogState extends State<Catalog> {
         bloc: _catalogBloc,
         builder: (context,state){
           if (state is ReadyCatalogState){
-            //print(state.listProducts);
             return CatalogGrid(state.listProducts);
           }
           else{

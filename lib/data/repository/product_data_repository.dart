@@ -12,20 +12,14 @@ class ProductDataRepository extends ProductRepository{
       );
 
   @override
-  List<Product> getListProduct({required int categoryId,}){
+  List<Product> getListProduct(){
 
     List<Map<String,dynamic>> maps = _productsData.listProducts;
     //записываем данные из списка maps в список объектов product (в перем. products)
-    final productsFull = maps
+    final products = maps
         .map((product) => Product.fromMap(product))
         .toList();
     //
-    final List<Product> products = [];
-    for (Product product in productsFull){
-      if (product.categoryId == categoryId){
-        products.add(product);
-      }
-    }
 
     return products;
   }

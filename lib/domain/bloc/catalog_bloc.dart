@@ -26,8 +26,15 @@ class CatalogBloc extends Bloc<CatalogEvent,CatalogState>{
 
   Future<CatalogState> _mapRefreshToState(RefreshCatalogEvent event) async {
     try {
-      final listProducts = _productRepository.getListProduct(categoryId: event.categoryIndex);
-      return ReadyCatalogState(listProducts);
+      final List<Product> listProducts = _productRepository.getListProduct();
+      // выбираем продукты определенной категории
+      final List<Product> productsCategory = [];
+      for (Product product in listProducts){
+        if (product.categoryId == event.categoryIndex){
+          productsCategory.add(product);
+        }
+      }
+      return ReadyCatalogState(productsCategory);
     } catch(e) {
       return ErrorCatalogState(e);
     }

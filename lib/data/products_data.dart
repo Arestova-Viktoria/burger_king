@@ -43,6 +43,34 @@ class ProductsData{
       "product_image": "https://eda.yandex.ru/images/1368744/89184f8bfaf684bb21705764536447a6-800x800.jpeg",
       "product_price": 230.0,
       "product_category": 0
+    },
+    {
+      "product_id": 6,
+      "product_title": "Креветки XXL",
+      "product_image": "https://eda.yandex.ru/images/1387779/1aff81fd270df78cdd5475161fb8cc82-800x800.jpeg",
+      "product_price": 510.0,
+      "product_category": 2
+    },
+    {
+      "product_id": 7,
+      "product_title": "Липтон Зеленый Чай в бутылке 0,5л",
+      "product_image": "https://eda.yandex.ru/images/1387779/7abbc8a0a11fd7a2bc441ae602e92a7e-800x800.jpeg",
+      "product_price": 89.0,
+      "product_category": 4
+    },
+    {
+      "product_id": 8,
+      "product_title": "Вода Аква Минерале с газом 0,5л",
+      "product_image": "https://eda.yandex.ru/images/1387779/388f09e122db0da379e6864e0a0bf154-800x800.png",
+      "product_price": 89.0,
+      "product_category": 4
+    },
+    {
+      "product_id": 9,
+      "product_title": "Кинг Фри (джун.)",
+      "product_image": "https://eda.yandex.ru/images/1387779/507bae1a005240c96f17aced6cfe13c2-800x800.jpeg",
+      "product_price": 59.0,
+      "product_category": 3
     }
   ];
 

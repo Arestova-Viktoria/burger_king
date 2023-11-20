@@ -14,7 +14,7 @@ class CategoryDataRepository extends CategoryRepository{
   @override
   List<Category> getListCategory() {
     List<Map<String,dynamic>> maps = _categoriesData.listCategories;
-    //записываем данные из списка maps в список объектов category (в перем. categories)
+    //записываем данные из maps в список объектов category (в перем. categories)
     final categories = maps
         .map((category) => Category.fromMap(category))
         .toList();

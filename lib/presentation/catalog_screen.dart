@@ -1,7 +1,11 @@
+import 'package:burger_king/internal/dependencies/product_module.dart';
 import 'package:burger_king/presentation/catalog/catalog.dart';
 import 'package:flutter/material.dart';
 
 import 'categories/categories.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../domain/bloc/catalog_bloc.dart';
 
 
 class CatalogScreen extends StatefulWidget {
@@ -12,6 +16,19 @@ class CatalogScreen extends StatefulWidget {
 }
 
 class _CatalogScreenState extends State<CatalogScreen> {
+  final CatalogBloc _catalogBloc = ProductModule.catalogBloc();
+
+  @override
+  void initState() {
+    super.initState();
+    _catalogBloc.add(FilterCatalogEvent(categoryIndex: 0));
+  }
+
+  @override
+  void dispose() {
+    _catalogBloc.close();
+    super.dispose();
+  }
 
 
   @override
@@ -34,15 +51,18 @@ class _CatalogScreenState extends State<CatalogScreen> {
           ),
         ],
       ),
-      body: Column(
-        children: <Widget>[
-          Container(
-            padding: const EdgeInsets.only(left: 15,top: 5,bottom: 5),
-            height: 52,
-            child: const Categories(),
+      body: BlocProvider<CatalogBloc>(
+          create: (context) => _catalogBloc,
+          child: Column(
+            children: <Widget>[
+              Container(
+                padding: const EdgeInsets.only(left: 15,top: 5,bottom: 5),
+                height: 52,
+                child: const Categories(),
+              ),
+              const Expanded(child: Catalog())
+            ],
           ),
-          const Expanded(child: Catalog())
-        ],
       ),
     );
   }

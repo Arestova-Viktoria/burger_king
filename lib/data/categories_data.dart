@@ -20,7 +20,7 @@ class CategoriesData{
     },
     {
       "category_id": 4,
-      "category_name": "Бургеры",
+      "category_name": "Напитки",
     },
   ];
 

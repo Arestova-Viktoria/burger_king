@@ -22,22 +22,31 @@ class CatalogBloc extends Bloc<CatalogEvent,CatalogState>{
     if (event is RefreshCatalogEvent) {
       yield await _mapRefreshToState(event);
     }
+    if (event is FilterCatalogEvent){
+      yield await _mapFilterToState(event);
+    }
   }
 
   Future<CatalogState> _mapRefreshToState(RefreshCatalogEvent event) async {
     try {
       final List<Product> listProducts = _productRepository.getListProduct();
-      // выбираем продукты определенной категории
-      final List<Product> productsCategory = [];
-      for (Product product in listProducts){
-        if (product.categoryId == event.categoryIndex){
-          productsCategory.add(product);
-        }
-      }
-      return ReadyCatalogState(productsCategory);
+      return ReadyCatalogState(listProducts);
     } catch(e) {
       return ErrorCatalogState(e);
     }
+  }
+
+  Future<CatalogState> _mapFilterToState(FilterCatalogEvent event) async {
+    try {
+      final List<Product> listProducts = _productRepository.getListProduct();
+      final List<Product> listProductsCategory = listProducts
+          .where((product) => product.categoryId == event.categoryIndex)
+          .toList();
+      return ReadyCatalogState(listProductsCategory);
+    } catch(e) {
+      return ErrorCatalogState(e);
+    }
+
   }
 
 }
@@ -56,11 +65,14 @@ class ReadyCatalogState extends CatalogState {
 @immutable
 abstract class CatalogEvent {}
 
-class RefreshCatalogEvent extends CatalogEvent{
-  final int categoryIndex;
-  RefreshCatalogEvent({required this.categoryIndex});
-}
+class RefreshCatalogEvent extends CatalogEvent{}
 
+class FilterCatalogEvent extends CatalogEvent{
+  final int categoryIndex;
+  FilterCatalogEvent({
+    required this.categoryIndex
+  });
+}
 
 class ErrorCatalogState extends CatalogState {
   final dynamic error;

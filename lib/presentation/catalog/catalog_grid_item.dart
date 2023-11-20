@@ -4,13 +4,11 @@ import 'package:flutter/material.dart';
 import '../../domain/model/product.dart';
 
 
-
-
-class CatalogCard extends StatelessWidget {
+class CatalogGridItem extends StatelessWidget {
 
   final Product _product;
 
-  const CatalogCard(this._product, {super.key});
+  const CatalogGridItem(this._product, {super.key});
 
   @override
   Widget build(BuildContext context) {

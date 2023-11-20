@@ -6,7 +6,6 @@ class Product {
   static const titleMap = "product_title";
   static const imageMap = "product_image";
   static const priceMap = "product_price";
-  // доп поле категории
   static const categoryIdMap = "product_category";
 
   final int id;

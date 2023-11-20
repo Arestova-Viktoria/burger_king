@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/model/product.dart';
-import 'catalog_card.dart';
+import 'catalog_grid_item.dart';
 
 class CatalogGrid extends StatelessWidget {
 
@@ -24,7 +24,7 @@ class CatalogGrid extends StatelessWidget {
         horizontal: 15,
       ),
       children: [
-        ..._listProducts.map((product) => CatalogCard(product))
+        ..._listProducts.map((product) => CatalogGridItem(product))
       ],
     );
   }

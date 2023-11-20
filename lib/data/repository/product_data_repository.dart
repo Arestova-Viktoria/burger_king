@@ -15,11 +15,10 @@ class ProductDataRepository extends ProductRepository{
   List<Product> getListProduct(){
 
     List<Map<String,dynamic>> maps = _productsData.listProducts;
-    //записываем данные из списка maps в список объектов product (в перем. products)
+    //записываем данные из maps в список объектов product (в перем. products)
     final products = maps
         .map((product) => Product.fromMap(product))
         .toList();
-    //
 
     return products;
   }
